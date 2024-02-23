@@ -7,12 +7,14 @@ type ChatProps = {
   chatbotName: string;
   chatbotImage: string;
   initialMessages: string[];
+  selectedClient: string
 };
 
 export const Chat: React.FC<ChatProps> = ({
   chatbotName,
   chatbotImage,
   initialMessages,
+  selectedClient,
 }) => {
   const [inputText, setInputText] = useState('');
   const [messages, setMessages] = useState<MessageProps[]>([]);
@@ -23,7 +25,7 @@ export const Chat: React.FC<ChatProps> = ({
     if (inputText.trim() !== '') {
       setMessages([
         ...messages,
-        { message: inputText, messageOwner: name, isReceived: false },
+        { message: inputText, messageOwner: selectedClient, isReceived: false },
       ]);
       setInputText('');
     }
@@ -57,16 +59,12 @@ export const Chat: React.FC<ChatProps> = ({
         {/* New Messages */}
         <div className="flex flex-col gap-4">
           {messages.map((message, index) => (
-            <div key={index} className="flex items-center gap-4">
-              <Avatar image={chatbotImage} alt="" />
-
-              <Message
-                key={index}
-                message={message.message}
-                messageOwner={message.messageOwner}
-                isReceived={message.isReceived}
-              />
-            </div>
+            <Message
+              key={index}
+              message={message.message}
+              messageOwner={message.messageOwner}
+              isReceived={message.isReceived}
+            />
           ))}
         </div>
 

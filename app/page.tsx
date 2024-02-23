@@ -1,6 +1,8 @@
 'use client';
 
+import { useState } from 'react';
 import { Chat } from './components/Chat';
+import { ClientSelector } from './components/ClientSelector';
 
 export default function Home() {
   // Initial data
@@ -11,25 +13,24 @@ export default function Home() {
     'Siga as instruções detalhadas no Notion oficial e boa sorte!',
   ];
   const clients = [
-    {
-      userName: 'Harry Potter',
-      avatar: '',
-    },
-    {
-      userName: 'Draco Malfoy',
-      avatar: '',
-    },
-    {
-      userName: 'Rony Weasley',
-      avatar: '',
-    },
-  ];
+    "Harry Potter",
+    "Draco malfoy",
+    "Cedrico Diggory",
+    "Luna Lovegood",
+  ]
+
+  const [selectedClient, setSelectedClient] = useState(clients[0])
 
   return (
-    <Chat
-      chatbotName={chatbotName}
-      chatbotImage={chatbotImage}
-      initialMessages={initialMessages}
-    />
+    <div className='min-h-screen flex items-center justify-center'>
+      <Chat
+        chatbotName={chatbotName}
+        chatbotImage={chatbotImage}
+        initialMessages={initialMessages}
+        selectedClient={clients[0]}
+      />
+
+      <ClientSelector clients={clients} selectedClient={selectedClient} />
+    </div>
   );
 }

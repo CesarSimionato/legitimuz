@@ -1,3 +1,5 @@
+import { Avatar } from "./Avatar";
+
 export type MessageProps = {
   message: string;
   messageOwner: string;
@@ -16,8 +18,12 @@ export const Message: React.FC<MessageProps> = ({
           {message}
         </div>
       ) : (
-        <div className="flex-1">
-          <div className="rounded-lg border p-4 text-sm">{message}</div>
+        <div className="flex items-center gap-4">
+          <Avatar image={`/avatar/${messageOwner}.png`} alt="" />
+
+          <div className="flex-1">
+            <div className="rounded-lg border p-4 text-sm">{message}</div>
+          </div>
         </div>
       )}
     </div>
