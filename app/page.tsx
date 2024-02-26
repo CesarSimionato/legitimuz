@@ -14,23 +14,27 @@ export default function Home() {
   ];
   const clients = [
     "Harry Potter",
-    "Draco malfoy",
+    "Draco Malfoy",
     "Cedrico Diggory",
     "Luna Lovegood",
   ]
 
   const [selectedClient, setSelectedClient] = useState(clients[0])
 
+  const handleSelectClient = (client: string) => {
+    setSelectedClient(client)
+  }
+
   return (
-    <div className='min-h-screen flex items-center justify-center'>
+    <div className='min-h-screen pt-4 flex flex-col items-center justify-between gap-4'>
       <Chat
         chatbotName={chatbotName}
         chatbotImage={chatbotImage}
         initialMessages={initialMessages}
-        selectedClient={clients[0]}
+        selectedClient={selectedClient}
       />
 
-      <ClientSelector clients={clients} selectedClient={selectedClient} />
+      <ClientSelector clients={clients} selectedClient={selectedClient} handleSelectClient={handleSelectClient} />
     </div>
   );
 }
